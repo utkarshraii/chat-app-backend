@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const oneToOneMessageSchema = new mongoose.Schema({
-  participant: [
+  participants: [
     {
       type: mongoose.Schema.ObjectId,
       ref: "User",
@@ -39,5 +39,4 @@ const OneToOneMessage = new mongoose.model(
   "OneToOneMessage",
   oneToOneMessageSchema
 );
-
 module.exports = OneToOneMessage;

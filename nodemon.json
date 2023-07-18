@@ -1,5 +1,7 @@
 {
     "env": {
-      "SG_KEY": ""
+      "SG_KEY": "",
+      "ZEGO_APP_ID": 20660499,
+      "ZEGO_SERVER_SECRET": "a222075618a8e99d7a00fe06e66e44d0"
     }
   }
