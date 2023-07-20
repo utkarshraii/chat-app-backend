@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const requestSchema = new mongoose.Schema({
   sender: {
     type: mongoose.Schema.ObjectId,
-    ref: "User", //will allow us to populate this field
+    ref: "User",
   },
   recipient: {
     type: mongoose.Schema.ObjectId,
-    ref: "User", //will allow us to populate this field
+    ref: "User",
   },
   createdAt: {
     type: Date,

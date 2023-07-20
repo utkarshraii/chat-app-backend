@@ -61,11 +61,15 @@ io.on("connection", async (socket) => {
 
   console.log(`User connected ${socket.id}`);
 
-  if (Boolean(user_id)) {
-    await User.findByIdAndUpdate(user_id, {
-      socket_id: socket.id,
-      status: "Online",
-    });
+  if (user_id != null && Boolean(user_id)) {
+    try {
+      User.findByIdAndUpdate(user_id, {
+        socket_id: socket.id,
+        status: "Online",
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   // We can write our socket event listeners in here...
@@ -164,10 +168,14 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("get_messages", async (data, callback) => {
-    const { messages } = await OneToOneMessage.findById(
-      data.conversation_id
-    ).select("messages");
-    callback(messages);
+    try {
+      const { messages } = await OneToOneMessage.findById(
+        data.conversation_id
+      ).select("messages");
+      callback(messages);
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   // Handle incoming text/link messages
