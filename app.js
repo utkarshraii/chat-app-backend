@@ -44,7 +44,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://chamty.utkhost.online",
 
     methods: ["GET", "PATCH", "POST", "DELETE", "PUT"],
 
