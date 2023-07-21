@@ -167,12 +167,28 @@ io.on("connection", async (socket) => {
     }
   });
 
+  // socket.on("get_messages", async (data, callback) => {
+  //   try {
+  //     const { messages } = await OneToOneMessage.findById(
+  //       data.conversation_id
+  //     ).select("messages");
+  //     callback(messages);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // });
   socket.on("get_messages", async (data, callback) => {
     try {
-      const { messages } = await OneToOneMessage.findById(
+      const result = await OneToOneMessage.findById(
         data.conversation_id
       ).select("messages");
-      callback(messages);
+
+      if (result && result.messages) {
+        const { messages } = result;
+        callback(messages);
+      } else {
+        callback([]); // or handle the case where messages are not available
+      }
     } catch (error) {
       console.log(error);
     }
@@ -201,9 +217,9 @@ io.on("connection", async (socket) => {
 
     // fetch OneToOneMessage Doc & push a new message to existing conversation
     const chat = await OneToOneMessage.findById(conversation_id);
-    chat.messages.push(new_message);
+    chat?.messages?.push(new_message);
     // save to db`
-    await chat.save({ new: true, validateModifiedOnly: true });
+    await chat?.save({ new: true, validateModifiedOnly: true });
 
     // emit incoming_message -> to user
 
