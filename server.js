@@ -36,7 +36,7 @@ const VideoCall = require("./models/videoCall");
 const io = new Server(server, {
   cors: {
     // origin: 'http://localhost:3000',
-    origin: "https://calchat.vercel.app",
+    origin: "https://utkarshraii.vercel.app",
     methods: ["GET", "POST"],
   },
 });
