@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const express = require("express");
+const path = require("path");
+const cors = require("cors");
 dotenv.config({ path: "./config.env" });
 
 process.on("uncaughtException", (err) => {
@@ -10,7 +13,6 @@ process.on("uncaughtException", (err) => {
 });
 
 const app = require("./app");
-
 const http = require("http");
 const server = http.createServer(app);
 
@@ -24,9 +26,17 @@ const VideoCall = require("./models/videoCall");
 
 // Add this
 // Create an io server and allow for CORS from http://localhost:3000 with GET and POST methods
+// const io = new Server(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST"],
+//   },
+// });
+
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    // origin: 'http://localhost:3000',
+    origin: "https://calchat.vercel.app",
     methods: ["GET", "POST"],
   },
 });
