@@ -1,3 +1,4 @@
+const path = require("cors");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
@@ -21,6 +22,13 @@ const FriendRequest = require("./models/friendRequest");
 const OneToOneMessage = require("./models/OneToOneMessage");
 const AudioCall = require("./models/audioCall");
 const VideoCall = require("./models/videoCall");
+
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+//rest api
+app.use("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build.index.html"));
+});
 
 // Add this
 // Create an io server and allow for CORS from http://localhost:3000 with GET and POST methods
