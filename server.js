@@ -28,7 +28,7 @@ const VideoCall = require("./models/videoCall");
 // Create an io server and allow for CORS from http://localhost:3000 with GET and POST methods
 const io = new Server(server, {
   cors: {
-    origin: ["https://chat-app-one-liard.vercel.app"],
+    origin: ["https://chat-app-eta-six.vercel.app"],
     methods: ["GET", "POST"],
     credentials: true,
   },

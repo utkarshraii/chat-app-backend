@@ -2,7 +2,6 @@ const express = require("express"); // web framework for Node.js.
 const morgan = require("morgan"); // HTTP request logger middleware for node.js
 
 const routes = require("./routes/index");
-
 const rateLimit = require("express-rate-limit"); // Basic rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset.
 const helmet = require("helmet"); // Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!
 
@@ -41,10 +40,11 @@ const cookieParser = require("cookie-parser"); // Parse Cookie header and popula
 const session = require("cookie-session"); // Simple cookie-based session middleware.
 
 const app = express();
+app.use(cors());
 
 app.use(
   cors({
-    origin: "*",
+    origin: ["https://chat-app-eta-six.vercel.app", "http://localhost:3000"],
 
     methods: ["GET", "PATCH", "POST", "DELETE", "PUT"],
 
@@ -85,7 +85,7 @@ const limiter = rateLimit({
   message: "Too many Requests from this IP, please try again in an hour!",
 });
 
-app.use("/tawk", limiter);
+//app.use("/tawk", limiter);
 
 app.use(
   express.urlencoded({
