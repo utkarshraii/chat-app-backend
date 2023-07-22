@@ -44,7 +44,9 @@ app.use(cors());
 
 app.use(
   cors({
-    origin: ["https://chat-app-eta-six.vercel.app", "http://localhost:3000"],
+    origin: [ "http://localhost:3000"],
+    methods: ["POST","GET","DELETE","PUT"].
+    credentials: true,
 
     //   Access-Control-Allow-Credentials is a header that, when set to true , tells browsers to expose the response to the frontend JavaScript code. The credentials consist of cookies, authorization headers, and TLS client certificates.
   })
