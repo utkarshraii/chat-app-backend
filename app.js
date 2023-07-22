@@ -94,9 +94,11 @@ app.use(mongosanitize());
 app.use(xss());
 
 app.use(routes);
-
-app.all("*", (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+app.get("/", (req, res) => {
+  res.json("Hello");
 });
+/*app.all("*", (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});*/
 
 module.exports = app;
