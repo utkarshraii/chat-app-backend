@@ -44,8 +44,8 @@ app.use(cors());
 
 app.use(
   cors({
-    origin: [ "http://localhost:3000"],
-    methods: ["POST","GET","DELETE","PUT"].
+    origin: ["https://utkchatapp-fe.vercel.app", "http://localhost:3000"],
+    methods: ["POST", "GET", "DELETE", "PUT"],
     credentials: true,
 
     //   Access-Control-Allow-Credentials is a header that, when set to true , tells browsers to expose the response to the frontend JavaScript code. The credentials consist of cookies, authorization headers, and TLS client certificates.
